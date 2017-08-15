@@ -1,0 +1,83 @@
+<div class="container">
+    <form [formGroup]="documentForm">
+        <div class="row">
+        <div class="col-md-4">
+            <div class="image">
+
+            </div>
+        </div>
+        <div class="col-md-8 row">
+            <div class="col-md-12">
+                <md-card>Simple card</md-card>
+            </div>
+            <div class="col-md-4">
+
+                <md-input-container>
+                    <input mdInput  formControlName="name" placeholder="Name" value="">
+                </md-input-container>
+            </div>
+
+            <div class="col-md-4">
+
+                <md-input-container>
+                    <input mdInput  formControlName="secName" placeholder="Second Name" value="">
+                </md-input-container>
+            </div>
+            <div class="col-md-4">
+
+                <md-input-container>
+                    <input mdInput  formControlName="surName" placeholder="Surname" value="">
+                </md-input-container>
+            </div>
+            <div class="col-md-4">
+
+                <md-input-container>
+                    <input mdInput  formControlName="phone" placeholder="Phone" value="Sushi">
+                </md-input-container>
+            </div>
+            <div class="col-md-4">
+
+                <md-input-container>
+                    <input mdInput formControlName="phone2"  placeholder="Phone 2" value="Sushi">
+                </md-input-container>
+            </div>
+            <div class="col-md-4">
+
+                <md-input-container>
+                    <input mdInput formControlName="skype"  placeholder="Skype" value="Sushi">
+                </md-input-container>
+            </div>
+        </div>
+            <fieldset class="col-md-12" formArrayName="works">
+                <div *ngFor="let works of documentForm.controls.works.controls; let i = index">
+                    <md-input-container>
+                        <input mdInput type="text" placeholder="Company name" [formControl]="works.controls['companyName']">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <input mdInput type="phone"  placeholder="Company phone" [formControl]="works.controls['companyPhone']">
+                    </md-input-container>
+                    <md-input-container>
+                        <input mdInput type="email"  placeholder="Company email" [formControl]="works.controls['companyEmail']">
+                    </md-input-container>
+                    <md-input-container>
+                        <textarea mdInput placeholder="Company address"  [formControl]="works.controls['companyAddress']"></textarea>
+                    </md-input-container>
+                    <md-input-container>
+                        <input mdInput placeholder="Start work date"  [formControl]="works.controls['companyDateStart']" [mdDatepicker]="pickerStart" placeholder="Choose a date">
+                        <button mdSuffix [mdDatepickerToggle]="pickerStart"></button>
+                    </md-input-container>
+                    <md-datepicker #pickerStart startView="year" ></md-datepicker>
+                    <md-input-container>
+                        <input mdInput  placeholder="End work date"  [formControl]="works.controls['companyDateEnd']" [mdDatepicker]="pickerEnd" placeholder="Choose a date">
+                        <button mdSuffix [mdDatepickerToggle]="pickerEnd"></button>
+                    </md-input-container>
+                    <md-datepicker #pickerEnd startView="year" ></md-datepicker>
+                        <button class="btn btn-danger" type="button" (click)="removeFields(i);">X</button>
+                </div>
+                <button  class="btn btn-primary" (click)="addFields('works');"><span class="glyphicon glyphicon-plus"></span></button>
+            </fieldset>
+
+    </div>
+    </form>
+</div>
